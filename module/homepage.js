@@ -6,7 +6,13 @@ const getMoviesApi = async () => {
     const slicedMovies = getMovies.slice(0, 15)
     return slicedMovies;
 }
-
+// created a function for span icons
+const createSpanIcon = (name) => {
+    const icon = document.createElement('span');
+    icon.classList.add("material-symbols-outlined");
+    icon.textContent = name;
+    return icon;
+}
 const displayMovies = async () => {
     const moviesImgDisplay = document.getElementById('movie-display');
     moviesImgDisplay.classList.add('movie-imgDiplay');
@@ -16,17 +22,31 @@ const displayMovies = async () => {
     movieApi.forEach(item => {
         const bodyDiv = document.createElement('div');
         bodyDiv.classList.add('bodyDiv');
-        const Div = document.createElement('div');
-        Div.classList.add('iDiv')
+        const cardUl = document.createElement('ul');
+        cardUl.classList.add('iDiv');
+        const cardLi = document.createElement('li');
+        const cardTLi = document.createElement('li');
         const imgDiv = document.createElement('img');
         const nameDiv = document.createElement('p');
+        const likeIcon = createSpanIcon("favorite");
+        const commentBtn = document.createElement('button');
+        commentBtn.innerText = 'Comments';
+        commentBtn.classList.add('comment-btn');
+       
+        const WLLCT = document.createElement('p');
+        WLLCT.innerHTML = `${item.weight}mb likes`
 
         imgDiv.setAttribute('src', item.image.medium);
         imgDiv.classList.add('imgDiv')
         nameDiv.innerHTML = item.name
-        Div.appendChild(imgDiv);
-        Div.appendChild(nameDiv);
-        bodyDiv.appendChild(Div);
+        cardLi.appendChild(imgDiv);
+        cardLi.appendChild(nameDiv);
+        cardTLi.appendChild(WLLCT);
+        cardTLi.appendChild(likeIcon);
+        cardLi.appendChild(cardTLi);
+        cardUl.appendChild(cardLi);
+        bodyDiv.appendChild(cardUl);
+        bodyDiv.appendChild(commentBtn);
         moviesImgDisplay.appendChild(bodyDiv)
     });
 
@@ -34,7 +54,7 @@ const displayMovies = async () => {
     const movieLength = document.getElementById('movielength');
     const getLength = movieApi.length;
     const lengthPgh = document.createElement('p');
-    lengthPgh.innerHTML = `Best Tv Series of all Time ${getLength})`;
+    lengthPgh.innerHTML = `Best Tv Series of all Time (${getLength})`;
     movieLength.appendChild(lengthPgh)
     console.log(getLength)
 }
