@@ -44,8 +44,6 @@ footer {
 }
 .bodyDiv {
     background-color: wheat;
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
     gap: 10px;
     margin: 20px;
     padding: 10px;
@@ -56,4 +54,10 @@ footer {
 }
 .imgDiv {
     width: 90%;
+}
+#up-icon,
+a {
+    color: brown;
+    cursor: pointer;
+    font-size: 1.5rem;
 }
