@@ -39,4 +39,4 @@ const displayMovies = async () => {
     console.log(getLength)
 }
 
-export {displayMovies}
+export {displayMovies, getMoviesApi}
