@@ -1,4 +1,5 @@
-// import { LikeApi, NewLike } from './likes.js';
+import { LikeApi, submitLike } from "./likeApi";
+
 /**
  * the like Api file is similar to the leaderboard api project so the first fucnction is to get the api containing whatever content you want displayed then the second function is to customize the api 
  */
@@ -22,7 +23,7 @@ const displayMovies = async () => {
     const moviesImgDisplay = document.getElementById('movie-display');
     moviesImgDisplay.classList.add('movie-imgDiplay');
     const movieApi = await getMoviesApi();
-    const likesApi = await likeApi(); //revisit
+    const likesApi = await LikeApi(); //revisit
     console.log(movieApi);
 
     movieApi.forEach(card => {
@@ -39,6 +40,7 @@ const displayMovies = async () => {
         const imgDiv = document.createElement('img');
         const nameDiv = document.createElement('p');
         const likeIcon = createSpanIcon("favorite");
+        likeIcon.setAttribute('id', 'likeID')
         const likeLiveCount = document.createElement('span');
         likeLiveCount.classList.add('totalLikes'); //
         likeLiveCount.innerHTML =` ${liveCount} likes`;
@@ -50,17 +52,18 @@ const displayMovies = async () => {
         const WLLCT = document.createElement('p');
         WLLCT.innerHTML = `${card.weight}mb likes`
         
-        const likeButton = cardLi.getElementsByClassName("material-symbols-outlined")[0]; //
-        likeButton.addEventListener('click', async (btn) => {
-            const liveCountElement = cardLi.getElementsByClassName('totalLikes')[0];
-            liveCount += 1;
-            liveCountElement.innerHTML = `${liveCount} likes`;
-            NewLike(id);
-            btn.disabled = true;
-            likeButton.style.color = 'red';
-        },
-            {once: true},
-        ),
+        // const likeButton = document.querySelectorAll(".material-symbols-outlined") //
+        // console.log(likeButton)
+        // likeButton.addEventListener('click',  (btn) => {
+        //     const liveCountElement = document.getElementsByClassName('totalLikes')[0];
+        //     liveCount += 1;
+        //     liveCountElement.innerHTML = `${liveCount} likes`;
+        //     submitLike(id);
+        //     btn.disabled = true;
+        //     likeButton.style.color = 'red';
+        // },
+        //     {once: true},
+        // ),
 
         imgDiv.setAttribute('src', card.image.medium);
         imgDiv.classList.add('imgDiv')
