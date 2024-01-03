@@ -13,12 +13,12 @@ const getMoviesApi = async () => {
     return slicedMovies;
 }
 // created a function for span icons
-const createSpanIcon = (name) => {
-    const icon = document.createElement('span');
-    icon.classList.add("material-symbols-outlined");
-    icon.textContent = name;
-    return icon;
-}
+// const createSpanIcon = (name) => {
+//     const icon = document.createElement('span');
+//     icon.classList.add("material-symbols-outlined");
+//     icon.textContent = name;
+//     return icon;
+// }
 const displayMovies = async () => {
     const moviesImgDisplay = document.getElementById('movie-display');
     moviesImgDisplay.classList.add('movie-imgDiplay');
@@ -39,8 +39,13 @@ const displayMovies = async () => {
         const cardTLi = document.createElement('li');
         const imgDiv = document.createElement('img');
         const nameDiv = document.createElement('p');
-        const likeIcon = createSpanIcon("favorite");
-        likeIcon.setAttribute('id', 'likeID')
+        // const likeIcon = createSpanIcon("favorite");
+        // likeIcon.setAttribute('id', 'likeID');
+        const likeIcon =  document.createElement('p');
+        likeIcon.innerHTML = `
+        <i class="fa fa-heart" aria-hidden="true"></i>        `;
+        console.log(likeIcon)
+        likeIcon.setAttribute('id', 'likeID');
         const likeLiveCount = document.createElement('span');
         likeLiveCount.classList.add('totalLikes'); //
         likeLiveCount.innerHTML =` ${liveCount} likes`;
@@ -52,9 +57,9 @@ const displayMovies = async () => {
         const WLLCT = document.createElement('p');
         WLLCT.innerHTML = `${card.weight}mb likes`
         
-        // const likeButton = document.querySelectorAll(".material-symbols-outlined") //
-        // console.log(likeButton)
-        // likeButton.addEventListener('click',  (btn) => {
+        const likeButton = document.getElementById("likeID"); //
+        console.log(likeButton)
+        // likeButton.addEventListener('click', async (btn) => {
         //     const liveCountElement = document.getElementsByClassName('totalLikes')[0];
         //     liveCount += 1;
         //     liveCountElement.innerHTML = `${liveCount} likes`;

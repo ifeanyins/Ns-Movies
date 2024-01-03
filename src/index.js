@@ -1,6 +1,7 @@
 import './style.css'
-import { displayMovies } from '../module/homepage'
-import { generatePopUp } from '../module/popup'
+import { movieList } from '../module/try'
 
-displayMovies()
-generatePopUp()
+movieList()
+// import { displayMovies } from '../module/homepage'
+
+// displayMovies()
