@@ -1,9 +1,9 @@
-import { LikeApi, submitLike } from './like.js';
+import { LikeApi, submitLike } from './likeApi.js';
 
 const movieApi = async () => {
   const fetchResult = await fetch('https://api.tvmaze.com/shows');
   const ShowResult = await fetchResult.json();
-  return ShowResult.slice(0, 16);
+  return ShowResult.slice(0, 15);
 };
 
 window.onload = movieApi();
@@ -13,14 +13,14 @@ export const contCount = (arr) => arr.length;
 const movieList = async () => {
   const allMovies = await movieApi();
   const likesApi = await LikeApi();
-  const movieLength = document.querySelector('.movielength');
+  const movieLength =  document.getElementById('movielength');
   movieLength.innerText = `(${contCount(allMovies)})`;
   allMovies.forEach((movie) => {
     const cardLikes = likesApi.find((like) => like.item_id === movie.id);
     const { id } = movie;
     let liveCount = +cardLikes?.likes;
 
-    const moviesContainer = document.querySelector('.movies-container');
+    const moviesContainer = document.querySelector('#movie-display');
     const movieUL = document.createElement('ul');
     const movieLI = document.createElement('li');
     movieLI.className = 'movie-cards';
