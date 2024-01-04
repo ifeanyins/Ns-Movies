@@ -1,4 +1,4 @@
-import { movieApi } from "./try";
+import { movieApi } from "./homepage";
 
 const getMovieLength = async () => {
     const movieLength = document.getElementById('movielength');

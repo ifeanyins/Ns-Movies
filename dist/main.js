@@ -10,6 +10,16 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./module/homepage.js":
+/*!****************************!*\
+  !*** ./module/homepage.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   movieApi: () => (/* binding */ movieApi),\n/* harmony export */   movieList: () => (/* binding */ movieList)\n/* harmony export */ });\n/* harmony import */ var _likeApi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./likeApi.js */ \"./module/likeApi.js\");\n\r\nconst url = 'https://api.tvmaze.com/shows';\r\nconst movieApi = async () => {\r\n  const fetchResult = await fetch(url);\r\n  const ShowResult = await fetchResult.json();\r\n  return ShowResult.slice(0, 15);\r\n};\r\n\r\nwindow.onload = movieApi();\r\n\r\nconst movieList = async () => {\r\n  const allMovies = await movieApi();\r\n  const likesApi = await (0,_likeApi_js__WEBPACK_IMPORTED_MODULE_0__.LikeApi)();\r\n  allMovies.forEach((movie) => {\r\n    const cardLikes = likesApi.find((like) => like.item_id === movie.id);\r\n    const { id } = movie;\r\n    let liveCount = +cardLikes?.likes;\r\n\r\n    const moviesContainer = document.querySelector('#movie-display');\r\n    const movieUL = document.createElement('ul');\r\n    const movieLI = document.createElement('li');\r\n    movieLI.className = 'movie-cards';\r\n    movieLI.innerHTML = `<div>\r\n      <img src=${movie.image.original} alt=${movie.name}>\r\n      </div>\r\n      <a href=\"${movie.officialSite}\" class=\"movie-title\">${movie.name}</a>\r\n      <div class=\"movie-info\">\r\n        <p<i class=\"fa-solid fa-star\" id='rating'></i>${movie.rating.average}</p>\r\n        </div>\r\n        <i class=\"fa fa-heart\" aria-hidden=\"true\"></i>\r\n        <p class = \"totalLikes\">${liveCount} likes</p>\r\n        <button id = ${id} class = \"commentBtn\">Comments</button>`;\r\n\r\n    movieUL.appendChild(movieLI);\r\n    moviesContainer.appendChild(movieUL);\r\n\r\n    const likeButton = movieLI.getElementsByClassName('fa-heart')[0];\r\n    likeButton.addEventListener(\r\n      'click',\r\n      async (btn) => {\r\n        const liveCountElement = movieLI.getElementsByClassName('totalLikes')[0];\r\n        liveCount += 1;\r\n        liveCountElement.innerHTML = `${liveCount} likes`;\r\n        (0,_likeApi_js__WEBPACK_IMPORTED_MODULE_0__.submitLike)(id);\r\n        btn.disabled = true;\r\n        likeButton.style.color = 'red';\r\n      },\r\n      { once: true },\r\n    );\r\n  });\r\n};\r\n\r\n\n\n//# sourceURL=webpack://ns-movies/./module/homepage.js?");
+
+/***/ }),
+
 /***/ "./module/likeApi.js":
 /*!***************************!*\
   !*** ./module/likeApi.js ***!
@@ -20,13 +30,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./module/try.js":
-/*!***********************!*\
-  !*** ./module/try.js ***!
-  \***********************/
+/***/ "./module/movieLength.js":
+/*!*******************************!*\
+  !*** ./module/movieLength.js ***!
+  \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   contCount: () => (/* binding */ contCount),\n/* harmony export */   movieApi: () => (/* binding */ movieApi),\n/* harmony export */   movieList: () => (/* binding */ movieList)\n/* harmony export */ });\n/* harmony import */ var _likeApi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./likeApi.js */ \"./module/likeApi.js\");\n\r\n\r\nconst movieApi = async () => {\r\n  const fetchResult = await fetch('https://api.tvmaze.com/shows');\r\n  const ShowResult = await fetchResult.json();\r\n  return ShowResult.slice(0, 15);\r\n};\r\n\r\nwindow.onload = movieApi();\r\n\r\nconst contCount = (arr) => arr.length;\r\n\r\nconst movieList = async () => {\r\n  const allMovies = await movieApi();\r\n  const likesApi = await (0,_likeApi_js__WEBPACK_IMPORTED_MODULE_0__.LikeApi)();\r\n  const movieLength =  document.getElementById('movielength');\r\n  movieLength.innerText = `(${contCount(allMovies)})`;\r\n  allMovies.forEach((movie) => {\r\n    const cardLikes = likesApi.find((like) => like.item_id === movie.id);\r\n    const { id } = movie;\r\n    let liveCount = +cardLikes?.likes;\r\n\r\n    const moviesContainer = document.querySelector('#movie-display');\r\n    const movieUL = document.createElement('ul');\r\n    const movieLI = document.createElement('li');\r\n    movieLI.className = 'movie-cards';\r\n    movieLI.innerHTML = `<div>\r\n      <img src=${movie.image.original} alt=${movie.name}>\r\n      </div>\r\n      <a href=\"${movie.officialSite}\" class=\"movie-title\">${movie.name}</a>\r\n      <div class=\"movie-info\">\r\n        <p<i class=\"fa-solid fa-star\" id='rating'></i>${movie.rating.average}</p>\r\n        </div>\r\n        <i class=\"fa fa-heart\" aria-hidden=\"true\"></i>\r\n        <p class = \"totalLikes\">${liveCount} likes</p>\r\n        <button id = ${id} class = \"commentBtn\">Comments</button>`;\r\n\r\n    movieUL.appendChild(movieLI);\r\n    moviesContainer.appendChild(movieUL);\r\n\r\n    const likeButton = movieLI.getElementsByClassName('fa-heart')[0];\r\n    likeButton.addEventListener(\r\n      'click',\r\n      async (btn) => {\r\n        const liveCountElement = movieLI.getElementsByClassName('totalLikes')[0];\r\n        liveCount += 1;\r\n        liveCountElement.innerHTML = `${liveCount} likes`;\r\n        (0,_likeApi_js__WEBPACK_IMPORTED_MODULE_0__.submitLike)(id);\r\n        btn.disabled = true;\r\n        likeButton.style.color = 'red';\r\n      },\r\n      { once: true },\r\n    );\r\n  });\r\n};\r\n\r\n\n\n//# sourceURL=webpack://ns-movies/./module/try.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _homepage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./homepage */ \"./module/homepage.js\");\n\r\n\r\nconst getMovieLength = async () => {\r\n    const movieLength = document.getElementById('movielength');\r\n    const getLengthAPI = await (0,_homepage__WEBPACK_IMPORTED_MODULE_0__.movieApi)();\r\n    const getLength = getLengthAPI.length;\r\n    const lengthPgh = document.createElement('p');\r\n    lengthPgh.innerHTML = `Best Tv Series of all Time (${getLength})`;\r\n    movieLength.appendChild(lengthPgh)\r\n    console.log(getLength)\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getMovieLength); \n\n//# sourceURL=webpack://ns-movies/./module/movieLength.js?");
 
 /***/ }),
 
@@ -136,7 +146,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _module_try__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../module/try */ \"./module/try.js\");\n\r\n\r\n\r\n(0,_module_try__WEBPACK_IMPORTED_MODULE_1__.movieList)()\r\n// import { displayMovies } from '../module/homepage'\r\n\r\n// displayMovies()\n\n//# sourceURL=webpack://ns-movies/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _module_homepage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../module/homepage */ \"./module/homepage.js\");\n/* harmony import */ var _module_movieLength__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../module/movieLength */ \"./module/movieLength.js\");\n\r\n\r\n\r\n\r\nfunction pageLoad () {\r\n    (0,_module_movieLength__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\r\n    (0,_module_homepage__WEBPACK_IMPORTED_MODULE_1__.movieList)();\r\n}\r\npageLoad()\n\n//# sourceURL=webpack://ns-movies/./src/index.js?");
 
 /***/ })
 
