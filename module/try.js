@@ -1,7 +1,7 @@
 import { LikeApi, submitLike } from './likeApi.js';
-
+const url = 'https://api.tvmaze.com/shows';
 const movieApi = async () => {
-  const fetchResult = await fetch('https://api.tvmaze.com/shows');
+  const fetchResult = await fetch(url);
   const ShowResult = await fetchResult.json();
   return ShowResult.slice(0, 15);
 };

@@ -85,13 +85,6 @@ const displayMovies = async () => {
         moviesImgDisplay.appendChild(bodyDiv);
     });
 
-    // put in another module later
-    const movieLength = document.getElementById('movielength');
-    const getLength = movieApi.length;
-    const lengthPgh = document.createElement('p');
-    lengthPgh.innerHTML = `Best Tv Series of all Time (${getLength})`;
-    movieLength.appendChild(lengthPgh)
-    console.log(getLength)
 }
 
 export {displayMovies, getMoviesApi}
