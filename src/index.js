@@ -1,7 +1,9 @@
 import './style.css'
-import { movieList } from '../module/try'
+import { movieList } from '../module/homepage'
+import getMovieLength from '../module/movieLength';
 
-movieList()
-// import { displayMovies } from '../module/homepage'
-
-// displayMovies()
+function pageLoad () {
+    getMovieLength();
+    movieList();
+}
+pageLoad();
