@@ -36,8 +36,7 @@ const movieList = async () => {
 
     const likeButton = movieLI.getElementsByClassName('fa-heart')[0];
     likeButton.addEventListener(
-      'click',
-      async (btn) => {
+      'click', (btn) => {
         const liveCountElement = movieLI.getElementsByClassName('totalLikes')[0];
         liveCount += 1;
         liveCountElement.innerHTML = `${liveCount} likes`;

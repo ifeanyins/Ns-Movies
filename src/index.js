@@ -6,4 +6,4 @@ function pageLoad () {
     getMovieLength();
     movieList();
 }
-pageLoad()
+pageLoad();
