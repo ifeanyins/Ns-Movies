@@ -46,7 +46,8 @@ export default class Popup {
               <ul class ="D-comments">
               </ul>
             </div>
-          </ul>`;
+          </ul>`; 
+        //   done with html structuring
     }
     static displayCom = async (MoveInfo) => {
         const commentList = document.querySelector('.D-comments');
