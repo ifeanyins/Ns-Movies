@@ -1,5 +1,5 @@
 const url =  'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/';
-class involvement {
+class Involvement {
     static postApp = async () => {
         const response = await fetch (url, {
             method: 'POST',
@@ -12,7 +12,7 @@ class involvement {
     };
 
     static postComments = async (id, name, com) => {
-        await fetch(url, {
+        await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/HW8Zns3g7hE8XehtHEw6/comments', {
             method: 'POST',
             body: JSON.stringify({
                 item_id: id,
@@ -26,13 +26,9 @@ class involvement {
     }
 
     static getComments = async (id) => {
-        const res = await fetch(url);
-        const response = res.json();
-        if (response.error) {
-            return [];
-        }
+        const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/4va6c4ouZmpzSETsANV3/comments?item_id=${id}`).then((res) => res.json());
         return response;
-    }
+      };
 }
 
-export {involvement}
+export {Involvement}
