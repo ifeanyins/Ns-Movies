@@ -13,7 +13,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://promzzykoncepts.github.io/PranMovies/)
+[Live Demo Link](https://ifeanyins.github.io/Ns-Movies/)
 
 ## Getting Started
 
