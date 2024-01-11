@@ -28,7 +28,7 @@ class Involvement {
     static getComments = async (id) => {
         const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/4va6c4ouZmpzSETsANV3/comments?item_id=${id}`).then((res) => res.json());
         return response;
-      };
+    };
 }
 
 export {Involvement}

@@ -56,5 +56,5 @@ export default class Popup {
         arr.forEach((item) => {
           commentList.innerHTML += `<li class = "listCom">${item.username}: ${item.comment} <br> :${item.creation_date.slice(-5, -1)}</li>`;
         });
-      };
+    };
 }
